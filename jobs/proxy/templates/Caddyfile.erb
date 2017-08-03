@@ -1,0 +1,22 @@
+http:// {
+  log /var/vcap/sys/log/proxy/access.log
+  limits <%= p('upload_limit') %>
+  redir https://{host}{uri}
+}
+
+https://<%= p('hostname') %> {
+  proxy / <%= p('backends').join(' ') %> {
+    header_upstream Host {host}
+    header_upstream X-Forwarded-Proto {scheme}
+
+    header_downstream X-Frame-Options "DENY"
+    header_downstream X-XSS-Protection "1; mode=block"
+    header_downstream X-Content-Type-Options "nosniff"
+    header_downstream Strict-Transport-Security "max-age=31536000;"
+  }
+
+  tls {
+    ca <%= p('acme_url') %>
+    protocols tls1.2
+  }
+}

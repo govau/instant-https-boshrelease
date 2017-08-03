@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -eu
+
+RUN_DIR=/var/vcap/sys/run/proxy
+LOG_DIR=/var/vcap/sys/log/proxy
+JOB_DIR=/var/vcap/jobs/proxy
+PIDFILE=${RUN_DIR}/pid
+CADDY=/var/vcap/packages/caddy/bin/caddy
+
+case $1 in
+
+  start)
+    mkdir -p "${RUN_DIR}" "${LOG_DIR}"
+    chown -R vcap:vcap "${RUN_DIR}" "${LOG_DIR}"
+
+    # Let Caddy listen on ports 80 and 443
+    setcap cap_net_bind_service=+ep "${CADDY}"
+
+    # Increase the file descriptor limit
+    ulimit -n 8192
+
+    exec "${CADDY}" -conf "${JOB_DIR}/config/Caddyfile" -email <%= p('contact_email') %> -agree -pidfile "${PIDFILE}" >> "${LOG_DIR}/caddy.stdout" 2>> "${LOG_DIR}/caddy.stderr"
+
+    ;;
+
+  stop)
+    kill $(<${PIDFILE})
+    rm -f $(<${PIDFILE})
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac

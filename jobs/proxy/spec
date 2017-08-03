@@ -1,0 +1,28 @@
+---
+name: proxy
+
+templates:
+  caddy_ctl.erb: bin/caddy_ctl
+  Caddyfile.erb: config/Caddyfile
+
+packages:
+  - caddy
+
+properties:
+  hostname:
+    description: "Hostname for TLS certificate"
+    example: "example.com"
+  contact_email:
+    description: "Contact email address for ACME account"
+    example: "hostmaster@example.com"
+  acme_url:
+    description: "ACME API URL for generating certificates (override for production use)"
+    default: "https://acme-staging.api.letsencrypt.org/directory"
+    example: "https://acme-v01.api.letsencrypt.org/directory"
+  backends:
+    description: "List of backend URLs to proxy to"
+    example: "[localhost:8080]"
+  upload_limit:
+    description: "Client request size limit"
+    default: "100mb"
+    example: "20mb"

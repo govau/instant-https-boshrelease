@@ -1,0 +1,5 @@
+check process caddy
+    with pidfile /var/vcap/sys/run/proxy/pid
+    start program "/var/vcap/jobs/proxy/bin/caddy_ctl start"
+    stop program "/var/vcap/jobs/proxy/bin/caddy_ctl stop"
+    group vcap
