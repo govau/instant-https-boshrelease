@@ -1,4 +1,7 @@
 dev_releases/
+.dev_builds/
+
+releases/**/*.tgz
 
 *.swo
 *.swp
