@@ -85,7 +85,7 @@ instance_groups:
       - name: default
     jobs:
       - name: dashboard
-        release foo-dashboard
+        release: foo-dashboard
         properties:
           listen: 127.0.0.1  # Configure the bind ip and port of the service
           port: 8000
