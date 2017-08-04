@@ -6,6 +6,11 @@ It's simply a [Caddy webserver](https://caddyserver.com/) instance that reverse 
 
 The release can be added to existing deployments, and the proxy can run on the same machine as the service.  This is the recommended setup because no unencrypted traffic will leave the machine.  It's also possible to run a standalone proxy that proxies to services running elsewhere on your network.
 
+## Important Info About Let's Encrypt
+If you use this with one of Let's Encrypt's API URLs, you'll be agreeing to the [Let's Encrypt Subscriber Agreement](https://letsencrypt.org/repository/).
+
+By default, the configuration uses Let's Encrypt's staging API's URL (https://acme-staging.api.letsencrypt.org/directory).  Let's Encrypt's production API has a rate limit of 60 failed validations per hour, so it's recommended that you leave this setting until you're satisfied your deployment works.  (The staging API works just like the production one, but returns a certificate that's not trusted by browsers.)  To get production certs from Let's Encrypt, set the `acme_url` job property to `https://acme-v01.api.letsencrypt.org/directory`.
+
 ## Usage
 ### Standalone Proxy
 It's recommended to use the all-in-one setup (below) if possible.
@@ -41,7 +46,7 @@ instance_groups:
           # Set this for real production certificates:
           # acme_url: https://acme-v01.api.letsencrypt.org/directory
           backends:
-            - 192.168.0.1:8000  # Host and port of existing dashboard
+            - "192.168.0.1:8000"  # Host and port of existing dashboard
     vm_type: default
     stemcell: default
 
@@ -97,7 +102,7 @@ instance_groups:
           # Set this for real production certificates:
           # acme_url: https://acme-v01.api.letsencrypt.org/directory
           backends:
-            - 127.0.0.1:8000
+            - "127.0.0.1:8000"
     vm_type: default
     stemcell: default
 
