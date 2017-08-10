@@ -1,0 +1,19 @@
+name: instant-https
+version: 0.1.1
+commit_hash: df18756
+uncommitted_changes: false
+jobs:
+- name: proxy
+  version: 5ac6a2aa0bb56efebc9c6e6c2338a94c660b3f9c
+  fingerprint: 5ac6a2aa0bb56efebc9c6e6c2338a94c660b3f9c
+  sha1: d6540ae5de9a5ef8d065e4098d35dad2d2ecb36d
+packages:
+- name: caddy
+  version: 8347cd694497167f327fb4a49080eee1555b24d6
+  fingerprint: 8347cd694497167f327fb4a49080eee1555b24d6
+  sha1: b33dc5f0fda4294430bcc33b2b144fe0cec49c2f
+  dependencies: []
+license:
+  version: 9dfa27ce43ff36284e7a9280dea66c88301502ad
+  fingerprint: 9dfa27ce43ff36284e7a9280dea66c88301502ad
+  sha1: 8cff4f16d1b6c3c8373279a1768b6796e958a0c1
