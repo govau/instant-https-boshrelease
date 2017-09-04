@@ -1,6 +1,8 @@
 dev_releases/
 .dev_builds/
 
+config/private.yml
+
 releases/**/*.tgz
 
 *.swo
