@@ -1,7 +1,7 @@
 name: instant-https
 version: "1"
-commit_hash: 8c106cc
-uncommitted_changes: false
+commit_hash: d3144b7
+uncommitted_changes: true
 jobs:
 - name: proxy
   version: 5ac6a2aa0bb56efebc9c6e6c2338a94c660b3f9c
