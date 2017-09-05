@@ -1,0 +1,5 @@
+check process links-kludger
+    with pidfile /var/vcap/sys/run/links-kludger/pid
+    start program "/var/vcap/jobs/links-kludger/bin/links_kludger_ctl start"
+    stop program "/var/vcap/jobs/links-kludger/bin/links_kludger_ctl stop"
+    group vcap

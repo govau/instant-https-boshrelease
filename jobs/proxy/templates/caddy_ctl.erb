@@ -21,7 +21,6 @@ case $1 in
     ulimit -n 8192
 
     exec "${CADDY}" -conf "${JOB_DIR}/config/Caddyfile" -email <%= p('contact_email') %> -agree -pidfile "${PIDFILE}" >> "${LOG_DIR}/caddy.stdout" 2>> "${LOG_DIR}/caddy.stderr"
-
     ;;
 
   stop)
@@ -30,6 +29,7 @@ case $1 in
     ;;
 
   *)
-    echo "Usage: ctl {start|stop}" ;;
+    echo "Usage: ctl {start|stop}"
+    ;;
 
 esac
