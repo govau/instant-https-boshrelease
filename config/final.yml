@@ -2,6 +2,6 @@ name: instant-https
 blobstore:
   provider: s3
   options:
-    blobstore_path: dta-instant-https-boshrelease
+    bucket_name: dta-instant-https-boshrelease
     region: ap-southeast-2
     endpoint: s3.dualstack.ap-southeast-2.amazonaws.com
