@@ -1,3 +1,21 @@
+<%
+  backends = nil
+  if_link("backend") do |backend|
+    backends = backend.instances.map {|instance| instance.address}
+  end
+  unless backends
+    backends = p('backends')
+  end
+
+  backends.map! do |backend|
+    # FIXME: this doesn't work for IPv6 addresses
+    if backend.include? ':'
+      backend
+    else
+      "#{backend}:#{p('default_backend_port')}"
+    end
+  end
+%>
 http:// {
   log /var/vcap/sys/log/proxy/access.log
   limits <%= p('upload_limit') %>
@@ -5,7 +23,7 @@ http:// {
 }
 
 https://<%= p('hostname') %> {
-  proxy / <%= p('backends').join(' ') %> {
+  proxy / <%= backends.join(' ') %> {
     header_upstream Host {host}
     header_upstream X-Forwarded-Proto {scheme}
 

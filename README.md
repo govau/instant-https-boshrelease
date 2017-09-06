@@ -58,7 +58,6 @@ update:
 ```
 
 ### All-in-one
-
 It should be possible to make an all-in-one deployment by tweaking an existing, unprotected deployment.
 
 * Add the the release
@@ -111,4 +110,79 @@ update:
   max_in_flight: 1
   canary_watch_time: 1000-60000
   update_watch_time: 1000-60000
+```
+
+### Links Support
+BOSH 2.0 links are also supported.  The `proxy` optionally consumes a link of type `conn`, named `backend`.  See [the BOSH links docs](https://bosh.io/docs/links.html) for more information.
+
+```yaml
+instance_groups:
+  - name: dashboard
+    instances: 1
+    azs: [z1]
+    networks:
+      - name: default
+    vm_type: default
+    stemcell: default
+    jobs:
+      - name: dashboard
+        release: foo-dashboard
+        properties:
+          port: 8000
+        provides:
+          dashboard: {as: backend_link}  # Provide backend link here
+  - name: proxy
+    instances: 1
+    azs: [z1]
+    networks:
+      - name: default
+    vm_type: default
+    stemcell: default
+    jobs:
+      - name: proxy
+        release: instant-https
+        properties:
+          hostname: dashboard.example.com
+          contact_email: webmaster@example.com
+          default_backend_port: 8000
+        consumes:
+          backend: {from: backend_link}  # Hook link to proxy here (matching using as/from)
+```
+
+The link `name` doesn't need to match if `as` and `from` are used as in the example above, but the link `type` does.  Because the `type` is just a meaningless, unstandardised tag, it's likely that jobs from different releases won't match.  As a hacky workaround until BOSH's links provide a better solution, you can run another no-op job in the instance group you want to link to:
+
+```yaml
+instance_groups:
+  - name: dashboard
+    instances: 1
+    azs: [z1]
+    networks:
+      - name: default
+    vm_type: default
+    stemcell: default
+    jobs:
+      - name: dashboard
+        release: foo-dashboard
+        properties:
+          port: 8000
+      - name: links-kludger  # This job can provide a link of the right type
+        release: instant-https
+        provides:
+          backend: {as: backend_link}
+  - name: proxy
+    instances: 1
+    azs: [z1]
+    networks:
+      - name: default
+    vm_type: default
+    stemcell: default
+    jobs:
+      - name: proxy
+        release: instant-https
+        properties:
+          hostname: dashboard.example.com
+          contact_email: webmaster@example.com
+          default_backend_port: 8000
+        consumes:
+          backend: {from: backend_link}  # BOSH should happily accept this link
 ```

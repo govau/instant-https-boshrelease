@@ -8,6 +8,11 @@ templates:
 packages:
   - caddy
 
+consumes:
+  - name: backend
+    type: conn
+    optional: true
+
 properties:
   hostname:
     description: "Hostname for TLS certificate"
@@ -19,9 +24,13 @@ properties:
     description: "ACME API URL for generating certificates (override for production use)"
     default: "https://acme-staging.api.letsencrypt.org/directory"
     example: "https://acme-v01.api.letsencrypt.org/directory"
+  default_backend_port:
+    description: "Default port to use for backends"
+    default: 80
+    example: 443
   backends:
-    description: "List of backend URLs to proxy to"
-    example: "[localhost:8080]"
+    description: "List of backend URLs to proxy to (port number optionally provided by default_backend_port)"
+    example: "[localhost:8080, example.com:443, 127.0.0.1]"
   upload_limit:
     description: "Client request size limit"
     default: "100mb"

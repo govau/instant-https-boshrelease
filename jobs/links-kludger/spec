@@ -1,0 +1,9 @@
+---
+name: links-kludger
+
+templates:
+  links_kludger_ctl.erb: bin/links_kludger_ctl
+
+provides:
+  - name: backend
+    type: conn
