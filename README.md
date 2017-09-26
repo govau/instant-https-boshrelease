@@ -22,8 +22,8 @@ name: instant-https-standalone
 
 releases:
   - name: instant-https
-    url: https://github.com/govau/instant-https-boshrelease/releases/download/v0.1.0/instant-https-1.tgz
-    sha1: 5430715589f418321c2d6daf187cce1ea4a51fd2
+    url: https://github.com/govau/instant-https-boshrelease/releases/download/v0.3.0/instant-https-0.3.0.tgz
+    sha1: 3c58ab3bcfe6f4f2196df78c15a36a44d7cf8f03
     version: latest
 
 stemcells:
@@ -72,8 +72,8 @@ releases:
   - name: foo-dashboard
     version: latest
   - name: instant-https  # Add the release
-    url: https://github.com/govau/instant-https-boshrelease/releases/download/v0.1.0/instant-https-1.tgz
-    sha1: 5430715589f418321c2d6daf187cce1ea4a51fd2
+    url: https://github.com/govau/instant-https-boshrelease/releases/download/v0.3.0/instant-https-0.3.0.tgz
+    sha1: 3c58ab3bcfe6f4f2196df78c15a36a44d7cf8f03
     version: latest
 
 stemcells:
