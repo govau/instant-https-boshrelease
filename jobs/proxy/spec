@@ -36,6 +36,6 @@ properties:
     default: "100mb"
     example: "20mb"
   websocket:
-    description: "Enabling forwarding WebSocket connections"
+    description: "Enable forwarding WebSocket connections"
     default: false
     example: true
