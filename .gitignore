@@ -1,5 +1,6 @@
 dev_releases/
 .dev_builds/
+blobs/
 
 config/private.yml
 
