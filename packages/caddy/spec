@@ -4,4 +4,4 @@ name: caddy
 dependencies: []
 
 files: 
-  - caddy/caddy_v0.10.6_linux_amd64.tar.gz  # https://github.com/mholt/caddy/releases/download/v0.10.6/caddy_v0.10.6_linux_amd64.tar.gz 
+  - caddy_v0.10.8_linux_amd64.tar.gz  # https://github.com/mholt/caddy/releases/download/v0.10.8/caddy_v0.10.8_linux_amd64.tar.gz 

@@ -1,11 +1,12 @@
 set -eux
 
 # Using the prebuilt binary for this initial version.
+VERSION=0.10.8
 
 # The Caddy tarball breaks convention and extracts to the current directory
-EXTRACT_DIR=caddy_v0.10.6
+EXTRACT_DIR="caddy_v${VERSION}"
 
 mkdir -p "${EXTRACT_DIR}"
-tar -C "${EXTRACT_DIR}" -x -f caddy/caddy_v0.10.6_linux_amd64.tar.gz
+tar -C "${EXTRACT_DIR}" -x -f "caddy_v${VERSION}_linux_amd64.tar.gz"
 mkdir -p "${BOSH_INSTALL_TARGET}/bin"
 mv "${EXTRACT_DIR}/caddy" "${BOSH_INSTALL_TARGET}/bin"
