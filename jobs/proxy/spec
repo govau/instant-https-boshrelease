@@ -35,3 +35,7 @@ properties:
     description: "Client request size limit"
     default: "100mb"
     example: "20mb"
+  websocket:
+    description: "Enable forwarding WebSocket connections"
+    default: false
+    example: true
