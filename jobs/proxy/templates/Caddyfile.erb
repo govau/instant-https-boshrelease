@@ -32,6 +32,7 @@ https://<%= p('hostname') %> {
     header_downstream X-XSS-Protection "1; mode=block"
     header_downstream X-Content-Type-Options "nosniff"
     header_downstream Strict-Transport-Security "max-age=31536000;"
+    header_downstream Referrer-Policy "<%= p('headers.referrer_policy') %>"
     <% if p('websocket') %>websocket<% end %>
   }
 

@@ -39,3 +39,7 @@ properties:
     description: "Enable forwarding WebSocket connections"
     default: false
     example: true
+  headers.referrer_policy:
+    description: "Value of Referrer-Policy HTTP header sent to clients"
+    default: strict-origin-when-cross-origin
+    example: same-origin
