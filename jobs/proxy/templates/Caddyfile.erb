@@ -16,14 +16,11 @@
     end
   end
 %>
-http:// {
-  log / /var/vcap/sys/log/proxy/access.log "{combined} {scheme}"
-  limits <%= p('upload_limit') %>
-  redir https://{host}{uri}
-}
 
-https://<%= p('hostname') %> {
+<%= p('hostname') %> {
+  limits <%= p('upload_limit') %>
   log / /var/vcap/sys/log/proxy/access.log "{combined} {scheme}"
+
   proxy / <%= backends.join(' ') %> {
     header_upstream Host {host}
     header_upstream X-Forwarded-Proto {scheme}
