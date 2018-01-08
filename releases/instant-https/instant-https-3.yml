@@ -18,6 +18,6 @@ packages:
   sha1: 44fd766a6bfa1547e3a7764d92091b54203cb83e
   dependencies: []
 license:
-  version: 9dfa27ce43ff36284e7a9280dea66c88301502ad
-  fingerprint: 9dfa27ce43ff36284e7a9280dea66c88301502ad
-  sha1: 397b9352c448baab2878288e534156767a8f6fe5
+  version: 579674c09e296ef0ba0b0e8f7bad3b49b1556f20
+  fingerprint: 579674c09e296ef0ba0b0e8f7bad3b49b1556f20
+  sha1: 4130c087d1e8f44150b6ee28d6be71f2d2ed038d
