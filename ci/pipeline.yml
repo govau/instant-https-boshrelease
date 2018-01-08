@@ -5,6 +5,11 @@ resource_types:
   source:
     repository: cloudfoundry/bosh-deployment-resource
     tag: v2.8.1
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: v1.3.1
 
 resources:
 - name: git
@@ -36,6 +41,11 @@ resources:
     file: instant-https.version
     initial_version: 0.5.0
     private_key: {{git_boshreleases_private_key}}
+- name: slack
+  type: slack-notification
+  source:
+    url: {{slack-webhook-url}}
+
 
 jobs:
 - name: build-it
@@ -72,3 +82,18 @@ jobs:
       body: github-release-info/body
       globs:
       - github-release-info/*-*.*.*.tgz
+
+  on_failure:
+    put: slack
+    params:
+      text: |
+        :x: $BUILD_JOB_NAME FAILED
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      text: |
+        :tada: $BUILD_JOB_NAME created a new release of instant-https
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+        $TEXT_FILE_CONTENT
+      text_file: github-release-info/body
