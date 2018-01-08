@@ -20,6 +20,7 @@ resources:
     branch: master
     ignore_paths:
     - releases/*
+    - .final_builds/*
 - name: git-push
   type: git
   source:
@@ -87,13 +88,13 @@ jobs:
     put: slack
     params:
       text: |
-        :x: $BUILD_JOB_NAME FAILED
+        :x: $BUILD_PIPELINE_NAME FAILED
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
   on_success:
     put: slack
     params:
       text: |
-        :tada: $BUILD_JOB_NAME created a new release of instant-https
+        :tada: $BUILD_PIPELINE_NAME created a new release of instant-https
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
         $TEXT_FILE_CONTENT
       text_file: github-release-info/body
