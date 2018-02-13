@@ -31,6 +31,7 @@
     header_downstream Strict-Transport-Security "max-age=31536000;"
     header_downstream Referrer-Policy "<%= p('headers.referrer_policy') %>"
     <% if p('websocket') %>websocket<% end %>
+    <% if p('insecure_skip_verify') %>insecure_skip_verify<% end %>
   }
 
   tls {
