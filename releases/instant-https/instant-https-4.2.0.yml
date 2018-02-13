@@ -1,0 +1,23 @@
+name: instant-https
+version: 4.2.0
+commit_hash: e79291e
+uncommitted_changes: false
+jobs:
+- name: links-kludger
+  version: b39323159a8e1eaa6aded404b13563005c7b41b6
+  fingerprint: b39323159a8e1eaa6aded404b13563005c7b41b6
+  sha1: 8a281c3cfa8509221cf15b58f81afba2e64e7a02
+- name: proxy
+  version: 6a80f748a67075361036df1fe1489fbfda33a348
+  fingerprint: 6a80f748a67075361036df1fe1489fbfda33a348
+  sha1: 3457b84c30070a74cb73f879b6171b00203ff676
+packages:
+- name: caddy
+  version: 0a244f22eaf06ed3f02530b6c59ce4bcf0e414d2
+  fingerprint: 0a244f22eaf06ed3f02530b6c59ce4bcf0e414d2
+  sha1: 44fd766a6bfa1547e3a7764d92091b54203cb83e
+  dependencies: []
+license:
+  version: 579674c09e296ef0ba0b0e8f7bad3b49b1556f20
+  fingerprint: 579674c09e296ef0ba0b0e8f7bad3b49b1556f20
+  sha1: 844605952c82b27901a6a7c3c3c0c7a7dc1e89f3
