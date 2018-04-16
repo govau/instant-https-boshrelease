@@ -14,6 +14,10 @@ case $1 in
     mkdir -p "${RUN_DIR}" "${LOG_DIR}"
     chown -R vcap:vcap "${RUN_DIR}" "${LOG_DIR}"
 
+    # Store caddy's certs and private keys in persistent storage
+    export CADDYPATH=/var/vcap/store/proxy/caddy
+    mkdir -p "${CADDYPATH}"
+
     # Let Caddy listen on ports 80 and 443
     setcap cap_net_bind_service=+ep "${CADDY}"
 
