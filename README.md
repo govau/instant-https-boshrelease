@@ -1,4 +1,7 @@
 # Instant HTTPS BOSH Release
+
+*We have archived this repository as it is no longer actively used or maintained by the DTA.*
+
 This BOSH release is designed as a simple, low-maintenance way to just add HTTPS to web services.  It's primarily designed for dashboards, status pages and other tooling used by dev and ops teams, but might be useful for other purposes.
 
 ## How it Works
